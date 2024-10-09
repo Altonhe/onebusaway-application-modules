@@ -24,11 +24,6 @@ jobs:
         run: mvn -U clean install -Ptravis -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2 -DskipTests=true -Dmaven.javadoc.skip=true -Dvalidate.silent=true -Dlog4j.configuration= -B -V -q
       - name: Test with Maven
         run: mvn test -Dlog4j.configuration=
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: maven-artifacts
-          path: '**/target/'
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,10 +36,8 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: maven-artifacts
+      - name: Build with Maven
+        run: mvn -U clean install -Ptravis -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2 -DskipTests=true -Dmaven.javadoc.skip=true -Dvalidate.silent=true -Dlog4j.configuration= -B -V -q
       - name: Configure Maven settings
         run: |
           mkdir -p ~/.m2
