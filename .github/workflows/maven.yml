@@ -25,10 +25,10 @@ jobs:
       - name: Test with Maven
         run: mvn test -Dlog4j.configuration=
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: maven-artifacts
-          path: target/
+          path: '**/target/'
 
   deploy:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: maven-artifacts
       - name: Configure Maven settings
