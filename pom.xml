@@ -60,22 +60,10 @@
         <repository>
             <id>releases-camsys-public-repo</id>
             <url>https://repo.camsys-apps.com/releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
         <repository>
             <id>snapshots-camsys-public-repo</id>
             <url>https://repo.camsys-apps.com/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
@@ -101,10 +89,10 @@
 
     <!-- releases and snapshots should be inherited -->
     <distributionManagement>
-        <site>
-            <id>${site_id}</id>
-            <url>${site_url}</url>
-        </site>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Altonhe/onebusaway-application-modules</url>
+        </repository>
     </distributionManagement>
     <modules>
         <module>onebusaway-admin-webapp</module>
